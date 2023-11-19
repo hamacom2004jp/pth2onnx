@@ -1,5 +1,5 @@
 from pathlib import Path
-from torch2onnx.app import common
+from pth2onnx.app import common
 import cv2
 import logging
 import platform
@@ -98,8 +98,8 @@ class Yolox(object):
         """
         cwd = Path('./YOLOX')
         if not cwd.exists() or not (cwd / '.venv').exists():
-            logging.error(f"YOLOX is not installed. Run the command 'torch2onnx -m yolox -c install -f'.")
-            return {'error':f"YOLOX is not installed. Run the command 'torch2onnx -m yolox -c install -f'."}
+            logging.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
+            return {'error':f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'."}
         weight_file = Path(weight_file) if isinstance(weight_file, str) else weight_file
         input_image = Path(input_image) if isinstance(input_image, str) else input_image
 
@@ -134,8 +134,8 @@ class Yolox(object):
         """
         cwd = Path('./YOLOX')
         if not cwd.exists() or not (cwd / '.venv').exists():
-            logging.error(f"YOLOX is not installed. Run the command 'torch2onnx -m yolox -c install -f'.")
-            return {'error':f"YOLOX is not installed. Run the command 'torch2onnx -m yolox -c install -f'."}
+            logging.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
+            return {'error':f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'."}
         weight_file = Path(weight_file) if isinstance(weight_file, str) else weight_file
         output_file = Path(output_file) if isinstance(output_file, str) else output_file
 
@@ -169,8 +169,8 @@ class Yolox(object):
         """
         cwd = Path('./YOLOX')
         if not cwd.exists() or not (cwd / '.venv').exists():
-            logging.error(f"YOLOX is not installed. Run the command 'torch2onnx -m yolox -c install -f'.")
-            return {'error':f"YOLOX is not installed. Run the command 'torch2onnx -m yolox -c install -f'."}
+            logging.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
+            return {'error':f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'."}
         onnx_file = Path(onnx_file) if isinstance(onnx_file, str) else onnx_file
         input_image = Path(input_image) if isinstance(input_image, str) else input_image
         output_dir = Path(output_dir) if isinstance(output_dir, str) else output_dir

@@ -1,0 +1,1 @@
+python -m pth2onnx $@

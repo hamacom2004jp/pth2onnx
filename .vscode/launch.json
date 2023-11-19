@@ -5,7 +5,7 @@
     "version": "0.0.1",
     "configurations": [
         {
-            "name": "Python: torch2onnx",
+            "name": "Python: pth2onnx",
             "type": "python",
             "request": "launch",
             //"args": ["-m", "yolox", "-c", "install", "-f"],
@@ -23,7 +23,7 @@
             //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_m.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
             //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_l.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
             //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_x.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
-            "module": "torch2onnx",
+            "module": "pth2onnx",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",            
             "justMyCode": true

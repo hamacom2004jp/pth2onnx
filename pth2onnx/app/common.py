@@ -17,7 +17,7 @@ import subprocess
 import time
 import yaml
 
-APP_ID = 'torch2onnx'
+APP_ID = 'pth2onnx'
 
 def load_config(mode:str):
     """

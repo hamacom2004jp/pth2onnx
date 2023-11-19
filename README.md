@@ -13,30 +13,30 @@ PyTorchで作成した重みファイルをONNX形式の重みファイルに変
 ## インストール方法
 
 ``` cmd or bash
-pip install torch2onnx
+pip install pth2onnx
 ```
 
-## torch2onnxの実行方法
+## pth2onnxの実行方法
 YOLOXモードの場合
 ``` cmd or bash
 # githubからソースをダウンロードし、YOLOXフォルダ内に.venvを生成しインストールする
-torch2onnx -m yolox -c install -f
+pth2onnx -m yolox -c install -f
 
 # 学習済みモデルのダウンロード先URLを表示
-torch2onnx -m yolox -c zoo -f
+pth2onnx -m yolox -c zoo -f
 # see: https://github.com/Megvii-BaseDetection/YOLOX/#benchmark
 
 # pytorchの重みファイルでデモを実行
-torch2onnx -m yolox -c demo -f --yolox_model_name <モデル名> --yolox_weight_file <pytorchモデルファイルのパス> --yolox_output_preview
+pth2onnx -m yolox -c demo -f --yolox_model_name <モデル名> --yolox_weight_file <pytorchモデルファイルのパス> --yolox_output_preview
 # モデル名は「yolox_nano」「yolox_tiny」「yolox_s」「yolox_m」「yolox_l」「yolox_x」など
 # pytorchモデルファイルのパスはYOLOXフォルダ内のパス。「models/yolox_tiny.pth」など
 
 # pytorchの重みファイルをONNXの重みファイルに変換
-torch2onnx -m yolox -c convert -f --yolox_model_name <モデル名> --yolox_weight_file <pytorchモデルファイルのパス> --yolox_onnx_file <ONNXモデルファイルのパス>
+pth2onnx -m yolox -c convert -f --yolox_model_name <モデル名> --yolox_weight_file <pytorchモデルファイルのパス> --yolox_onnx_file <ONNXモデルファイルのパス>
 # ONNXモデルファイルのパスはYOLOXフォルダ内のパス。「models/yolox_tiny.onnx」など
 
 # ONNXの重みファイルで推論を実行
-torch2onnx -m yolox -c inference -f --yolox_onnx_file <ONNXモデルファイルのパス> --yolox_model_img_size <モデルのINPUTサイズ> --yolox_output_preview
+pth2onnx -m yolox -c inference -f --yolox_onnx_file <ONNXモデルファイルのパス> --yolox_model_img_size <モデルのINPUTサイズ> --yolox_output_preview
 # モデルのINPUTサイズは「416」など
 
 ```
@@ -45,33 +45,33 @@ torch2onnx -m yolox -c inference -f --yolox_onnx_file <ONNXモデルファイル
 コマンドラインオプションが多いので、それを保存して再利用できるようにする
 ``` cmd or bash
 # 通常のコマンドに「-u」と「-s」オプションを追加する
-torch2onnx -u <オプションを保存するファイル> -s
+pth2onnx -u <オプションを保存するファイル> -s
 
 # 次から使用するときは「-u」を使用する
-torch2onnx -u <オプションを保存するファイル>
+pth2onnx -u <オプションを保存するファイル>
 ```
 
 コマンドの実行結果を見やすくする。
 ``` cmd or bash
 # 通常のコマンドに「-f」オプションを追加する
-torch2onnx -f
+pth2onnx -f
 
 # 「-f」オプションを外せば、結果はjson形式で取得できる
-torch2onnx 
+pth2onnx 
 ```
 
 コマンドラインオプションのヘルプ。
 ``` cmd or bash
-torch2onnx -h
+pth2onnx -h
 ```
 
-## torch2onnxコマンドについて
-```python -m torch2onnx```の省略形です。
+## pth2onnxコマンドについて
+```python -m pth2onnx```の省略形です。
 実体は```scripts```ディレクトリ内にあります。
 
 ### データの保存場所
 ```
-pathlib.Path(HOME_DIR) / '.torch2onnx'
+pathlib.Path(HOME_DIR) / '.pth2onnx'
 ```
 
 ## 動作確認したモデル
@@ -87,8 +87,8 @@ pathlib.Path(HOME_DIR) / '.torch2onnx'
 
 ## 開発環境構築
 ```
-git clone https://github.com/hamacom2004jp/torch2onnx.git
-cd torch2onnx
+git clone https://github.com/hamacom2004jp/pth2onnx.git
+cd pth2onnx
 python -m venv .venv
 .venv\Scripts\activate
 python.exe -m pip install --upgrade pip
@@ -137,7 +137,7 @@ twine upload --repository testpypi dist/*
 ```
 - pipコマンドのテスト
 ``` cmd or bash
-pip install -i https://test.pypi.org/simple/ torch2onnx
+pip install -i https://test.pypi.org/simple/ pth2onnx
 ```
 
 - 本番環境にアップロード

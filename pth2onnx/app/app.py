@@ -1,18 +1,18 @@
 from pathlib import Path
-from torch2onnx.app import common
-from torch2onnx.app.convert import yolox
+from pth2onnx.app import common
+from pth2onnx.app.convert import yolox
 import argparse
 import sys
 import time
 
 
 def main(HOME_DIR:str):
-    parser = argparse.ArgumentParser(prog='python -m torch2onnx', description='Convert PyTorch model to Onnx model.')
+    parser = argparse.ArgumentParser(prog='python -m pth2onnx', description='Convert PyTorch model to Onnx model.')
     parser.add_argument('-u', '--useopt', help=f'Use options file.')
     parser.add_argument('-s', '--saveopt', help=f'save options file. with --useopt option.', action='store_true')
     parser.add_argument('-f', '--format', help='Setting the cmd format.', action='store_true')
     parser.add_argument('-m', '--mode', help='Setting the boot mode.', choices=['yolox'])
-    parser.add_argument('--data', help='Setting the data directory.', default=Path(HOME_DIR) / ".torch2onnx")
+    parser.add_argument('--data', help='Setting the data directory.', default=Path(HOME_DIR) / ".pth2onnx")
     parser.add_argument('--timeout', help='Setting the cmd timeout.', type=int, default=15)
     parser.add_argument('-c', '--cmd', help='Setting the cmd type.', choices=['install', 'zoo', 'demo', 'convert', 'inference'])
     parser.add_argument('--pycmd', help='Setting the python command.', default='python')
