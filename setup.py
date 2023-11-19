@@ -17,7 +17,9 @@ INSTALL_REQUIRES = [
     'Pillow',
     'PyYAML',
     'requests',
-    'tabulate'
+    'tabulate',
+    'twine',
+    'wheel'
 ]
 PACKAGES = [
     'torch2onnx',

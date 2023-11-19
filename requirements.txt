@@ -4,4 +4,5 @@ Pillow
 PyYAML
 requests
 tabulate
+twine
 wheel
