@@ -17,10 +17,13 @@ pip install pth2onnx
 ```
 
 ## pth2onnxの実行方法
-YOLOXモードの場合
+### YOLOXモードの場合
 ``` cmd or bash
 # githubからソースをダウンロードし、YOLOXフォルダ内に.venvを生成しインストールする
 pth2onnx -m yolox -c install -f
+# Windows環境の場合下記のエラーが出ることがある
+# ERROR: Could not install packages due to an OSError: [WinError 206] ファイル名または拡張子が長すぎます。
+# これが出たときは「YOLOX/requirements.txt」ファイルの「onnx-simplifier」をコメントアウトして再実行する
 
 # 学習済みモデルのダウンロード先URLを表示
 pth2onnx -m yolox -c zoo -f
@@ -38,8 +41,8 @@ pth2onnx -m yolox -c convert -f --yolox_model_name <モデル名> --yolox_weight
 # ONNXの重みファイルで推論を実行
 pth2onnx -m yolox -c inference -f --yolox_onnx_file <ONNXモデルファイルのパス> --yolox_model_img_size <モデルのINPUTサイズ> --yolox_output_preview
 # モデルのINPUTサイズは「416」など
-
 ```
+
 
 ## その他便利なオプション
 コマンドラインオプションが多いので、それを保存して再利用できるようにする
