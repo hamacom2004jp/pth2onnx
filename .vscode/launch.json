@@ -1,0 +1,32 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "Python: torch2onnx",
+            "type": "python",
+            "request": "launch",
+            //"args": ["-m", "yolox", "-c", "install", "-f"],
+            "args": ["-m", "yolox", "-c", "zoo", "-f"],
+            //"args": ["-m", "yolox", "-c", "demo", "-f", "--yolox_model_name", "yolox_tiny", "--yolox_weight_file", "models/yolox_tiny.pth", "--yolox_output_preview"],
+            //"args": ["-m", "yolox", "-c", "convert", "-f", "--yolox_model_name", "yolox_nano", "--yolox_weight_file", "models/yolox_nano.pth", "--yolox_onnx_file", "models/yolox_nano.onnx"],
+            //"args": ["-m", "yolox", "-c", "convert", "-f", "--yolox_model_name", "yolox_tiny", "--yolox_weight_file", "models/yolox_tiny.pth"],
+            //"args": ["-m", "yolox", "-c", "convert", "-f", "--yolox_model_name", "yolox_s", "--yolox_weight_file", "models/yolox_s.pth"],
+            //"args": ["-m", "yolox", "-c", "convert", "-f", "--yolox_model_name", "yolox_m", "--yolox_weight_file", "models/yolox_m.pth"],
+            //"args": ["-m", "yolox", "-c", "convert", "-f", "--yolox_model_name", "yolox_l", "--yolox_weight_file", "models/yolox_l.pth"],
+            //"args": ["-m", "yolox", "-c", "convert", "-f", "--yolox_model_name", "yolox_x", "--yolox_weight_file", "models/yolox_x.pth"],
+            //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_tiny.onnx", "--yolox_model_img_size", "416", "--yolox_output_preview"],
+            //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_nano.onnx", "--yolox_model_img_size", "416", "--yolox_output_preview"],
+            //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_s.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
+            //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_m.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
+            //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_l.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
+            //"args": ["-m", "yolox", "-c", "inference", "-f", "--yolox_onnx_file", "models/yolox_x.onnx", "--yolox_model_img_size", "640", "--yolox_output_preview"],
+            "module": "torch2onnx",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",            
+            "justMyCode": true
+        }
+    ]
+}
