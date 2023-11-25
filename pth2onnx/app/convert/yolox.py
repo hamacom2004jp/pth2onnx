@@ -39,7 +39,7 @@ class Yolox(object):
                 self.logger.error(f"Install failed. returncode={returncode}")
                 return {'error':f"Install failed. returncode={returncode}"}
 
-        actcmd = '.venv\\Scripts\\activate.bat' if platform.system() == 'Windows' else '.venv/Scripts/activate'
+        actcmd = '.venv\\Scripts\\activate.bat' if platform.system() == 'Windows' else '. .venv/bin/activate'
         self.logger.debug(f"Current directory:{cwd}")
         returncode, _ = common.cmd(f"{actcmd} && python -m pip install --upgrade pip", self.logger, cwd=cwd)
         if returncode != 0:
