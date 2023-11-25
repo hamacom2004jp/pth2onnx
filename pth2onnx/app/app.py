@@ -2,11 +2,12 @@ from pathlib import Path
 from pth2onnx.app import common
 from pth2onnx.app.convert import yolox
 import argparse
-import sys
+import os
 import time
 
 
-def main(HOME_DIR:str):
+def main():
+    HOME_DIR = os.path.expanduser("~")
     parser = argparse.ArgumentParser(prog='python -m pth2onnx', description='Convert PyTorch model to Onnx model.')
     parser.add_argument('-u', '--useopt', help=f'Use options file.')
     parser.add_argument('-s', '--saveopt', help=f'save options file. with --useopt option.', action='store_true')

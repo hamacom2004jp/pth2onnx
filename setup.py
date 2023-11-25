@@ -41,8 +41,7 @@ with open('README.md', 'r', encoding='utf-8') as fp:
     readme = fp.read()
 LONG_DESCRIPTION = readme
 LONG_DESCRIPTION_CONTENT_TYPE = 'text/markdown'
-RESORCE_TEXT_FILES = dict(pth2onnx=[
-    'config.yml', 'logconf.yml', 'scripts/pth2onnx.bat', 'scripts/pth2onnx'])
+RESORCE_TEXT_FILES = dict(pth2onnx=['config.yml', 'logconf.yml'])
 
 setup(
     name=NAME,
@@ -63,5 +62,5 @@ setup(
     install_requires=INSTALL_REQUIRES,
     package_data=RESORCE_TEXT_FILES,
     include_package_data=True,
-    scripts=['pth2onnx/scripts/pth2onnx.bat','pth2onnx/scripts/pth2onnx']
+    entry_points=dict(console_scripts=['pth2onnx=pth2onnx.app.app:main'])
 )

@@ -30,40 +30,35 @@ class Yolox(object):
         if not cwd.exists():
             returncode, _ = common.cmd("git clone https://github.com/Megvii-BaseDetection/YOLOX", self.logger)
             if returncode != 0:
-                logging.error(f"Install failed. returncode={returncode}")
+                self.logger.error(f"Install failed. returncode={returncode}")
                 return {'error':f"Install failed. returncode={returncode}"}
 
         if not (cwd / '.venv').exists():
             returncode, _ = common.cmd(f"{pycmd} -m venv .venv", self.logger, cwd=cwd)
             if returncode != 0:
-                logging.error(f"Install failed. returncode={returncode}")
+                self.logger.error(f"Install failed. returncode={returncode}")
                 return {'error':f"Install failed. returncode={returncode}"}
 
         actcmd = '.venv\\Scripts\\activate.bat' if platform.system() == 'Windows' else '.venv/Scripts/activate'
-        logging.debug(f"Current directory:{cwd}")
+        self.logger.debug(f"Current directory:{cwd}")
         returncode, _ = common.cmd(f"{actcmd} && python -m pip install --upgrade pip", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Install failed. returncode={returncode}")
-            return {'error':f"Install failed. returncode={returncode}"}
-
-        returncode, _ = common.cmd(f"{actcmd} && {pipcmd} install -U pip", self.logger, cwd=cwd)
-        if returncode != 0:
-            logging.error(f"Install failed. returncode={returncode}")
+            self.logger.error(f"Install failed. returncode={returncode}")
             return {'error':f"Install failed. returncode={returncode}"}
 
         returncode, _ = common.cmd(f"{actcmd} && {pipcmd} install -r requirements.txt", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Install failed. returncode={returncode}")
+            self.logger.error(f"Install failed. returncode={returncode}")
             return {'error':f"Install failed. returncode={returncode}"}
 
         returncode, _ = common.cmd(f"{actcmd} && {pipcmd} install onnxruntime", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Install failed. returncode={returncode}")
+            self.logger.error(f"Install failed. returncode={returncode}")
             return {'error':f"Install failed. returncode={returncode}"}
 
         returncode, _ = common.cmd(f"{actcmd} && {pipcmd} install -v -e .", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Install failed. returncode={returncode}")
+            self.logger.error(f"Install failed. returncode={returncode}")
             return {'error':f"Install failed. returncode={returncode}"}
 
         return {'success':f"Install successed."}
@@ -98,17 +93,17 @@ class Yolox(object):
         """
         cwd = Path('./YOLOX')
         if not cwd.exists() or not (cwd / '.venv').exists():
-            logging.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
+            self.logger.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
             return {'error':f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'."}
         weight_file = Path(weight_file) if isinstance(weight_file, str) else weight_file
         input_image = Path(input_image) if isinstance(input_image, str) else input_image
 
         actcmd = '.venv\\Scripts\\activate.bat' if platform.system() == 'Windows' else '.venv/Scripts/activate'
-        logging.debug(f"Current directory:{cwd}")
+        self.logger.debug(f"Current directory:{cwd}")
         returncode, _ = common.cmd(f"{actcmd} && {pycmd} tools/demo.py image -n {model_name} -c {weight_file} --path {input_image}"
                                    f" --conf {clsth} --nms {nms} --tsize {model_img_size} --save_result --device [cpu/gpu]", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Demo failed. returncode={returncode}")
+            self.logger.error(f"Demo failed. returncode={returncode}")
             return {'error':f"Demo failed. returncode={returncode}"}
         outfile = common.find_max_update_file(cwd / 'YOLOX_outputs', '**/*.jpg')
         if output_preview:
@@ -134,19 +129,19 @@ class Yolox(object):
         """
         cwd = Path('./YOLOX')
         if not cwd.exists() or not (cwd / '.venv').exists():
-            logging.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
+            self.logger.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
             return {'error':f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'."}
         weight_file = Path(weight_file) if isinstance(weight_file, str) else weight_file
         output_file = Path(output_file) if isinstance(output_file, str) else output_file
 
         actcmd = '.venv\\Scripts\\activate.bat' if platform.system() == 'Windows' else '.venv/Scripts/activate'
-        logging.debug(f"Current directory:{cwd}")
+        self.logger.debug(f"Current directory:{cwd}")
 
         if output_file is None:
             output_file = weight_file.parent / Path(model_name + '.onnx')
         returncode, _ = common.cmd(f"{actcmd} && {pycmd} tools/export_onnx.py -n {model_name} -c {weight_file} --output-name {output_file} --no-onnxsim", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Convert failed. returncode={returncode}")
+            self.logger.error(f"Convert failed. returncode={returncode}")
             return {'error':f"Convert failed. returncode={returncode}"}
         return {'success':f"outfile={output_file}"}
 
@@ -169,18 +164,18 @@ class Yolox(object):
         """
         cwd = Path('./YOLOX')
         if not cwd.exists() or not (cwd / '.venv').exists():
-            logging.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
+            self.logger.error(f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'.")
             return {'error':f"YOLOX is not installed. Run the command 'pth2onnx -m yolox -c install -f'."}
         onnx_file = Path(onnx_file) if isinstance(onnx_file, str) else onnx_file
         input_image = Path(input_image) if isinstance(input_image, str) else input_image
         output_dir = Path(output_dir) if isinstance(output_dir, str) else output_dir
 
         actcmd = '.venv\\Scripts\\activate.bat' if platform.system() == 'Windows' else '.venv/Scripts/activate'
-        logging.debug(f"Current directory:{cwd}")
+        self.logger.debug(f"Current directory:{cwd}")
         returncode, _ = common.cmd(f"{actcmd} && {pycmd} demo/ONNXRuntime/onnx_inference.py -m {onnx_file} --image_path {input_image} --output_dir {output_dir} "
                                     f"--score_thr {score_th} --input_shape {input_size},{input_size}", self.logger, cwd=cwd)
         if returncode != 0:
-            logging.error(f"Onnx inference failed. returncode={returncode}")
+            self.logger.error(f"Onnx inference failed. returncode={returncode}")
             return {'error':f"Onnx inference failed. returncode={returncode}"}
         outfile = common.find_max_update_file(cwd / output_dir, '**/*.jpg')
         if output_preview:

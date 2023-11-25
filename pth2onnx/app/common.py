@@ -3,6 +3,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 from pkg_resources import resource_string
 from tabulate import tabulate
+from typing import List
 import base64
 import json
 import logging
@@ -375,17 +376,17 @@ def img2byte(image:Image, format:str='JPEG') -> bytes:
         image.save(buffer, format="JPEG")
         return buffer.getvalue()
 
-def draw_boxes(image:Image, boxes:list[list[float]], scores:list[float], classes:list[int], labels:list[str] = None, colors = None):
+def draw_boxes(image:Image, boxes:List[List[float]], scores:List[float], classes:List[int], labels:List[str] = None, colors = None):
     """
     画像にバウンディングボックスを描画します。
 
     Args:
         image (Image): PILのImageオブジェクト
-        boxes (list[list[float]]): バウンディングボックスの座標リスト
-        scores (list[float]): バウンディングボックスのスコアリスト
-        classes (list[int]): バウンディングボックスのクラスリスト
-        labels (list[str], optional): クラスのラベルリスト. Defaults to None.
-        colors (list, optional): バウンディングボックスの色リスト. Defaults to None.
+        boxes (List[List[float]]): バウンディングボックスの座標リスト
+        scores (List[float]): バウンディングボックスのスコアリスト
+        classes (List[int]): バウンディングボックスのクラスリスト
+        labels (List[str], optional): クラスのラベルリスト. Defaults to None.
+        colors (List, optional): バウンディングボックスの色リスト. Defaults to None.
 
     Returns:
         Image: 描画された画像
